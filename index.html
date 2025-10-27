@@ -488,7 +488,6 @@
             justify-content: space-between;
             gap: 10px;
             width: 100%;
-            max-width: 320px; /* фикс для одинаковых строк */
             line-height: 1.2;
         }
 
@@ -548,9 +547,9 @@
         /* === СПАН И ТЕКСТ === */
         .label-text, .toggle-group span {
             flex-grow: 1;
-            white-space: nowrap; /* чтобы не ломался текст */
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
             vertical-align: middle; /* ровное выравнивание */
             display: inline-block;
             line-height: normal;

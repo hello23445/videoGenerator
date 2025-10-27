@@ -17,8 +17,8 @@ if (blockedUsers.includes(localStorage.getItem('user_Token'))){
 function getRandomNumber() {
   const number = Math.floor(Math.random() * (15 - 5 + 1)) + 5; // 5–15
 
-  if (number === 6 && localStorage.getItem('subscribed')) {
-    localStorage.removeItem('subscribed');
+  if (number === 6 && localStorage.getItem('subscribed1')) {
+    localStorage.removeItem('subscribed1');
   }
 
   return number;
