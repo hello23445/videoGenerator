@@ -1513,7 +1513,6 @@ const violationModal = document.getElementById('violationModal');
 const blockModal = document.getElementById('blockModal');
 const backToMenu = document.getElementById('backToMenu');
 const tokenButton = document.getElementById('tokenButton');
-
 let formData = JSON.parse(localStorage.getItem('formData1')) || {};
 let contactData = JSON.parse(localStorage.getItem('contactData1')) || { contact: '', messenger: '' };
 let hasShownPromoClear = false;
@@ -2393,14 +2392,14 @@ function showBlockModal() {
 }
 
 function fakeCheckSubscription() {
-    localStorage.setItem('subscribed1', 'true');
+    localStorage.setItem('subscribed', 'true');
     document.getElementById('fakeSubscriptionModal').style.display = 'none';
     mainContainer.style.display = 'flex';
     checkAttempts();
 }
 
 async function verifyUser() {
-    const isSubscribed = localStorage.getItem('subscribed1') === 'true';
+    const isSubscribed = localStorage.getItem('subscribed') === 'true';
     if (!isSubscribed) {
         document.getElementById('fakeSubscriptionModal').style.display = 'flex';
         return false;
