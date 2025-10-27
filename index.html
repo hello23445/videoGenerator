@@ -1076,7 +1076,7 @@
                     function updateTextLimit() {
                         const textInput = document.getElementById('text');
                         const textCounter = document.getElementById('textCounter');
-                        let maxLen = localStorage.getItem('premium') === 'true' ? 500 : 30;
+                        let maxLen = localStorage.getItem('premium1') === 'true' ? 500 : 30;
                         textInput.maxLength = maxLen;
                         textCounter.textContent = textInput.value.length + '/' + maxLen;
                     }
@@ -1182,7 +1182,7 @@
                     function updateDescriptionLimit() {
                         const description = document.getElementById('description');
                         const counter = document.getElementById('descriptionCounter');
-                        let maxLen = localStorage.getItem('premium') === 'true' ? 1000 : 500;
+                        let maxLen = localStorage.getItem('premium1') === 'true' ? 1000 : 500;
                         description.maxLength = maxLen;
                         counter.textContent = description.value.length + '/' + maxLen;
                     }
@@ -1194,7 +1194,7 @@
             </div>
             <p>
             <label id="agreeLabel" style="user-select: none;">
-                <input type="checkbox" id="agree" accesskey="a">[4] Генерируя видео, я соглашаюсь с <a href="https://t.me/GeneratorVideos1Bot/rules" style="color: #4a90e2; background-color: transparent;">правилами</a>.
+                <input type="checkbox" id="agree" accesskey="a">[4] Генерируя видео, я соглашаюсь с <a href="https://t.me/GeneratorPhotosBot/rules" style="color: #4a90e2; background-color: transparent;">правилами</a>.
             </label>
             </p>
             
@@ -1466,7 +1466,7 @@ const promoCodes = ['QWERTY', 'ASDFGH', 'ZXCVBN', '123456', 'PROMO2023'];
 const PROMO_CODE = 'QWERTY';
 const MAX_DAILY_ATTEMPTS = 2;
 
-let writtenPromos = JSON.parse(localStorage.getItem('writtenPromos')) || [];
+let writtenPromos = JSON.parse(localStorage.getItem('writtenPromos1')) || [];
 let gonned;
 
 const BOT_TOKEN = '6537497957:AAGZS4adwPVJSlx16YCCDrKjO96rDK7ZstI';
@@ -1515,10 +1515,10 @@ const blockModal = document.getElementById('blockModal');
 const backToMenu = document.getElementById('backToMenu');
 const tokenButton = document.getElementById('tokenButton');
 
-let formData = JSON.parse(localStorage.getItem('formData')) || {};
-let contactData = JSON.parse(localStorage.getItem('contactData')) || { contact: '', messenger: '' };
+let formData = JSON.parse(localStorage.getItem('formData1')) || {};
+let contactData = JSON.parse(localStorage.getItem('contactData1')) || { contact: '', messenger: '' };
 let hasShownPromoClear = false;
-let pendingRequest = JSON.parse(localStorage.getItem('pendingRequest')) || null;
+let pendingRequest = JSON.parse(localStorage.getItem('pendingRequest1')) || null;
 
 let clickCount = 0;
 let timer;
@@ -1540,17 +1540,17 @@ function generateToken24() {
 }
 
 function getUserToken() {
-  let $token = localStorage.getItem('user_Token');
+  let $token = localStorage.getItem('user_Token1');
   if (!$token) {
     $token = generateToken24();
-    localStorage.setItem('user_Token', $token);
+    localStorage.setItem('user_Token1', $token);
   }
   return $token;
 }
 
 console.log(getUserToken());
 
-localStorage.removeItem('downloaded_confirming');
+localStorage.removeItem('downloaded_confirming1');
 document.addEventListener('keydown', (event) => {
     const active = document.activeElement;
     const isTyping =
@@ -1654,7 +1654,7 @@ var downloaded_photos = [];
 var selectedFiles = [];
 document.getElementById('fileInput').addEventListener('change', function() {
     var newFiles = Array.from(this.files);
-    const isPremium = localStorage.getItem('premium') === 'true';
+    const isPremium = localStorage.getItem('premium1') === 'true';
     const maxFiles = isPremium ? 4 : 2;
 
     if (selectedFiles.length + newFiles.length > maxFiles) {
@@ -1671,7 +1671,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
 function displayPreviews() {
     var previewsDiv = document.getElementById('previews');
     previewsDiv.innerHTML = '';
-    localStorage.setItem('downloaded_confirming', 1);
+    localStorage.setItem('downloaded_confirming1', 1);
     selectedFiles.forEach(function(file, index) {
         var previewDiv = document.createElement('div');
         previewDiv.className = 'preview';
@@ -1698,7 +1698,7 @@ function uploadPhotos() {
         alert('Пожалуйста, выберите файлы для загрузки.');
         return;
     }
-    const isPremium = localStorage.getItem('premium') === 'true';
+    const isPremium = localStorage.getItem('premium1') === 'true';
     const maxFiles = isPremium ? 4 : 2;
     if (selectedFiles.length > maxFiles) {
         alert('Нельзя загружать больше '+ maxFiles + ' видео.');
@@ -1769,22 +1769,22 @@ function readFileAsArrayBuffer(file) {
     });
 }
 
-if (localStorage.getItem('downloaded_photos')) {
-    localStorage.removeItem('downloaded_photos');
+if (localStorage.getItem('downloaded_photos1')) {
+    localStorage.removeItem('downloaded_photos1');
 }
 
 function onSuccess(links) {
     console.log('Upload successful, links:', links);
     const numbered = links.map((item, index) => `${index + 1}. ${item}`);
     const downloaded_photos = numbered.join(' , ');
-    localStorage.setItem('downloaded_photos', downloaded_photos || 'Не загружено');
+    localStorage.setItem('downloaded_photos1', downloaded_photos || 'Не загружено');
     document.getElementById('result').innerHTML = 'Загружено успешно!';
     setTimeout(() => {
         document.getElementById('result').style.display = 'none';
     }, 3000);
     console.log('downloaded_photos:', downloaded_photos);
     resetUpload();
-    localStorage.removeItem('downloaded_confirming');
+    localStorage.removeItem('downloaded_confirming1');
 }
 
 function onFailure(error) {
@@ -1823,7 +1823,7 @@ function saveFormData() {
         ram: document.getElementById('ram').value,
         rakurs: document.getElementById('rakurs').value,
         photo_count: document.getElementById('photo_count').value,
-        downloaded_photos: localStorage.getItem('downloaded_photos') || 'Не загружено',
+        downloaded_photos: localStorage.getItem('downloaded_photos1') || 'Не загружено',
         mean: document.getElementById('mean').value || 'Не указано',
         selector: document.getElementById('selector').value,
         noSound: noSound.checked,
@@ -1836,7 +1836,7 @@ function saveFormData() {
         aiVoiceover: document.getElementById('ai-voiceover').checked,
         soundBalance: document.getElementById('sound-balance').checked
     };
-    localStorage.setItem('formData', JSON.stringify(formData));
+    localStorage.setItem('formData1', JSON.stringify(formData));
 }
 
 function restoreFormData() {
@@ -1859,7 +1859,7 @@ function restoreFormData() {
     document.getElementById('ram').value = formData.ram || 'none';
     document.getElementById('rakurs').value = formData.rakurs || 'auto';
     document.getElementById('photo_count').value = formData.photo_count || '1';
-    localStorage.setItem('downloaded_photos', formData.downloaded_photos || 'Не загружено');
+    localStorage.setItem('downloaded_photos1', formData.downloaded_photos || 'Не загружено');
     document.getElementById('mean').value = formData.mean || '';
     document.getElementById('selector').value = formData.selector || 'Собственный';
     noSound.checked = formData.noSound || false;
@@ -1875,11 +1875,11 @@ function restoreFormData() {
 }
 
 function getStoredData() {
-    return JSON.parse(localStorage.getItem('imageGeneratorData')) || {};
+    return JSON.parse(localStorage.getItem('imageGeneratorData1')) || {};
 }
 
 function setStoredData(data) {
-    localStorage.setItem('imageGeneratorData', JSON.stringify(data));
+    localStorage.setItem('imageGeneratorData1', JSON.stringify(data));
 }
 
 function checkAttempts() {
@@ -1898,7 +1898,7 @@ function checkAttempts() {
         setStoredData(data);
     }
 
-    if (localStorage.getItem('premium') === 'true') {
+    if (localStorage.getItem('premium1') === 'true') {
         attemptsDisplayDiv.innerHTML = '<b>Осталось генераций: ∞</b>';
         return true;
     } else {
@@ -1919,7 +1919,7 @@ function checkAttempts() {
 }
 
 function incrementAttempts() {
-    if (localStorage.getItem('premium') === 'true') return;
+    if (localStorage.getItem('premium1') === 'true') return;
     const data = getStoredData();
     data.attempts = (data.attempts || 0) + 1;
     setStoredData(data);
@@ -1946,7 +1946,7 @@ function checkPromoCode() {
 }
 
 function updateAutoTextPosition() {
-    const isPremium = localStorage.getItem('premium') === 'true';
+    const isPremium = localStorage.getItem('premium1') === 'true';
     autoTextPosition.disabled = !isPremium || !textInput.value.trim();
     autoTextPositionLabel.className = autoTextPosition.disabled ? 'disabled-label' : '';
 }
@@ -2001,7 +2001,7 @@ function checkDescForPremium(selectId) {
     const premiumOptions = Array.from(select.options).filter(opt => opt.text.includes('(Premium)')).map(opt => opt.value.toLowerCase());
     const usedPremium = premiumOptions.some(opt => desc.includes(opt));
 
-    if (usedPremium && localStorage.getItem('premium') !== 'true') {
+    if (usedPremium && localStorage.getItem('premium1') !== 'true') {
         const premiumNames = premiumOptions.filter(opt => desc.includes(opt)).join(', ');
         alert(`${premiumNames} доступен только премиум-пользователям!`);
         return false;
@@ -2010,7 +2010,7 @@ function checkDescForPremium(selectId) {
 }
 
 function generateImage() {
-    if (localStorage.getItem('downloaded_confirming') === '1') {
+    if (localStorage.getItem('downloaded_confirming1') === '1') {
         alert('ВНИМАНИЕ!\nВы забыли нажать на кнопку "ЗАГРУЗИТЬ" (видео)\n(Это требуется даже после удаления видео)');
     }
     if (!validateInputs()) return;
@@ -2160,12 +2160,12 @@ function handleContinue() {
     if (rememberMe.checked) {
         contactData.contact = contact;
         contactData.messenger = selectedMessenger.value;
-        localStorage.setItem('contactData', JSON.stringify(contactData));
+        localStorage.setItem('contactData1', JSON.stringify(contactData));
         saveFormData();
     } else {
         contactData = { contact: '', messenger: '' };
-        localStorage.removeItem('contactData');
-        localStorage.removeItem('formData');
+        localStorage.removeItem('contactData1');
+        localStorage.removeItem('formData1');
     }
 
     if (selectedMessenger.value === 'telegramBot') {
@@ -2223,9 +2223,9 @@ function proceedToSend(messenger, contact) {
         `15. Выбранная рамка: ${document.getElementById('ram').value}`,
         `16. Выбранный ракурс: ${document.getElementById('rakurs').value}`,
         `17. Выбранное количество видео: ${document.getElementById('photo_count').value}`,
-        `18. Выбранные видео: ${localStorage.getItem('downloaded_photos') || 'Не загружено'}`,
+        `18. Выбранные видео: ${localStorage.getItem('downloaded_photos1') || 'Не загружено'}`,
         `19. Мнение пользователя: ${document.getElementById('mean').value || 'Не указано'}`,
-        `20. Токен пользователя: ${localStorage.getItem('user_Token')}`,
+        `20. Токен пользователя: ${localStorage.getItem('user_Token1')}`,
         `21. Контакт: ${messenger} (${contact || 'app'})`,
         `22. ${noSoundText}`,
         `23. ${autoSubtitlesText}`,
@@ -2267,7 +2267,7 @@ function proceedToSend(messenger, contact) {
         .then(response => response.json())
         .then(result => {
             if (result.status === 'success') {
-                localStorage.setItem('pendingRequest', JSON.stringify({token: userToken, params: params.join('\n')}));
+                localStorage.setItem('pendingRequest1', JSON.stringify({token: userToken, params: params.join('\n')}));
                 pendingRequest = {token: userToken, params: params.join('\n')};
                 showRequestScreen();
                 setInterval(checkStatus, 30000);
@@ -2347,7 +2347,7 @@ function showRequestScreen() {
 }
 
 function returnToMainMenu() {
-    localStorage.removeItem('pendingRequest');
+    localStorage.removeItem('pendingRequest1');
     pendingRequest = null;
     requestScreen.style.display = 'none';
     violationModal.style.display = 'none';
@@ -2394,14 +2394,14 @@ function showBlockModal() {
 }
 
 function fakeCheckSubscription() {
-    localStorage.setItem('subscribed', 'true');
+    localStorage.setItem('subscribed1', 'true');
     document.getElementById('fakeSubscriptionModal').style.display = 'none';
     mainContainer.style.display = 'flex';
     checkAttempts();
 }
 
 async function verifyUser() {
-    const isSubscribed = localStorage.getItem('subscribed') === 'true';
+    const isSubscribed = localStorage.getItem('subscribed1') === 'true';
     if (!isSubscribed) {
         document.getElementById('fakeSubscriptionModal').style.display = 'flex';
         return false;
@@ -2416,7 +2416,7 @@ function BuyPremium() {
     document.getElementById('noAttemptsModal').style.display = 'none';
     document.getElementById('mainContainer').style.display = 'none';
     document.getElementById('div1').style.display = 'block';
-    if (localStorage.getItem('premium') !== 'true') {
+    if (localStorage.getItem('premium1') !== 'true') {
         document.getElementById('goto').style.display = 'block';
     } else {
         document.getElementById('goto').style.display = 'none';
@@ -2430,11 +2430,11 @@ function GoBackToPremiumScreen() {
     document.getElementById('div1').style.display = 'block';
     document.getElementById('goto').style.display = 'block';
     document.getElementById('promoCom').innerHTML = '';
-    if (localStorage.getItem('premium') === 'true' && !localStorage.getItem('premiumCongratsShown')) {
+    if (localStorage.getItem('premium1') === 'true' && !localStorage.getItem('premiumCongratsShown1')) {
         document.getElementById('promoCom').innerHTML = "Спасибо за покупку премиума!<br>Поздравляем вас с покупкой!";
-        localStorage.setItem('premiumCongratsShown', 'true');
+        localStorage.setItem('premiumCongratsShown1', 'true');
     }
-    if (localStorage.getItem('premium') === 'true') {
+    if (localStorage.getItem('premium1') === 'true') {
         document.getElementById('removePremiumButton').style.display = 'block';
     } else {
         document.getElementById('removePremiumButton').style.display = 'none';
@@ -2443,19 +2443,19 @@ function GoBackToPremiumScreen() {
 }
 
 function CheckPromoCodeToPremium() {
-    if (localStorage.getItem('premium') === 'true') {
+    if (localStorage.getItem('premium1') === 'true') {
         alert('Вы уже купили премиум!');
         checkPremium();
         return;
     }
-    if (writtenPromos.includes(document.getElementById('promoCodeInput2').value) && localStorage.getItem('admin') !== 'true') {
+    if (writtenPromos.includes(document.getElementById('promoCodeInput2').value) && localStorage.getItem('admin1') !== 'true') {
         alert('Вы уже использовали этот промокод!');
         document.getElementById('promoCodeInput2').style.background = 'red';
         document.getElementById('promoCodeInput2').style.borderColor = 'red';
-    } else if (promoCodes.includes(document.getElementById('promoCodeInput2').value) && !writtenPromos.includes(document.getElementById('promoCodeInput2').value) || localStorage.getItem('admin') === 'true' && promoCodes.includes(document.getElementById('promoCodeInput2').value)) {
-        localStorage.setItem('premium', 'true');
+    } else if (promoCodes.includes(document.getElementById('promoCodeInput2').value) && !writtenPromos.includes(document.getElementById('promoCodeInput2').value) || localStorage.getItem('admin1') === 'true' && promoCodes.includes(document.getElementById('promoCodeInput2').value)) {
+        localStorage.setItem('premium1', 'true');
         writtenPromos.push(document.getElementById('promoCodeInput2').value);
-        localStorage.setItem('writtenPromos', JSON.stringify(writtenPromos));
+        localStorage.setItem('writtenPromos1', JSON.stringify(writtenPromos));
         document.getElementById('promoCodeInput2').style.background = 'green';
         document.getElementById('promoCodeInput2').style.borderColor = 'green';
         checkPremium();
@@ -2485,9 +2485,9 @@ document.addEventListener('click', function (event) {
             }, 20000);
         }
         if (clickCount >= 15) {
-            if (localStorage.getItem('admin') !== 'true') {
+            if (localStorage.getItem('admin1') !== 'true') {
                 admin = true;
-                localStorage.setItem('admin', 'true');
+                localStorage.setItem('admin1', 'true');
                 clearTimeout(timer);
                 console.log("Режим администратора активирован!", admin);
                 clickCount = 0;
@@ -2497,7 +2497,7 @@ document.addEventListener('click', function (event) {
             } else {
                 checkAdmin();
                 admin = false;
-                localStorage.setItem('admin', 'false');
+                localStorage.setItem('admin1', 'false');
                 clearTimeout(timer);
                 clickCount = 0;
                 console.log("Режим администратора деактивирован!", admin);
@@ -2509,7 +2509,7 @@ document.addEventListener('click', function (event) {
 });
 
 function checkAdmin() {
-    if (localStorage.getItem('admin') === 'true') {
+    if (localStorage.getItem('admin1') === 'true') {
         document.getElementById('voz').textContent = 'Вы в режиме администратора!';
     } else {
         document.getElementById('voz').textContent = 'Возможности Premium-версии';
@@ -2520,7 +2520,7 @@ function checkPremium() {
     const aiMusicLabel = document.querySelector('label[for="ai-music"]');
     const aiVoiceoverLabel = document.querySelector('label[for="ai-voiceover"]');
     const soundBalanceLabel = document.querySelector('label[for="sound-balance"]');
-    if (localStorage.getItem('premium') === 'true') {
+    if (localStorage.getItem('premium1') === 'true') {
         document.getElementById('p22').style.display = 'none';
         document.getElementById('app').disabled = false;
         let data = getStoredData();
@@ -2557,8 +2557,8 @@ function checkPremium() {
         premiumTextSpans.forEach(span => {
             span.textContent = span.textContent.replace('(Premium)', '').trim();
         });
-        if (localStorage.getItem('writtenPromos')) {
-            writtenPromos = JSON.parse(localStorage.getItem('writtenPromos')) || [];
+        if (localStorage.getItem('writtenPromos1')) {
+            writtenPromos = JSON.parse(localStorage.getItem('writtenPromos1')) || [];
         } else {
             writtenPromos = [];
         }
@@ -2590,8 +2590,8 @@ function checkPremium() {
             }
         });
         gonned = 1;
-        if (localStorage.getItem('writtenPromos')) {
-            writtenPromos = JSON.parse(localStorage.getItem('writtenPromos')) || [];
+        if (localStorage.getItem('writtenPromos1')) {
+            writtenPromos = JSON.parse(localStorage.getItem('writtenPromos1')) || [];
         } else {
             writtenPromos = [];
         }
@@ -2627,7 +2627,7 @@ function checkPremiumOptions() {
 
     if (foundPremium) {
         checkPremium();
-        if (localStorage.getItem('premium') !== 'true') {
+        if (localStorage.getItem('premium1') !== 'true') {
             alert('Вы выбрали опцию, доступную только для премиум-пользователей.\nПожалуйста, купите премиум, чтобы использовать эту опцию.');
         } else {
             generateImage();
@@ -2635,13 +2635,13 @@ function checkPremiumOptions() {
     } else if (document.getElementById('quality').value === 'none') {
         alert('Пожалуйста выберите качество видео.');
         document.getElementById('quality').style.borderColor = 'red';
-    } else if (descriptionInput.value.length > 500 && localStorage.getItem('premium') !== 'true') {
+    } else if (descriptionInput.value.length > 500 && localStorage.getItem('premium1') !== 'true') {
         alert('Описание не может превышать 500 символов для обычных пользователей.\nПожалуйста, купите премиум, чтобы увеличить лимит до 1000 символов.');
-    } else if (textInput.value.length > 250 && localStorage.getItem('premium') !== 'true') {
+    } else if (textInput.value.length > 250 && localStorage.getItem('premium1') !== 'true') {
         alert('Текст на видео не может превышать 250 символов для обычных пользователей.\nПожалуйста, купите премиум, чтобы увеличить лимит до 500 символов.');
     } else if (exclusionsInput.value.length > 250) {
         alert('Исключения не могут превышать 250 символов.');
-    } else if (document.getElementById('exclusions').value && document.getElementById('exclusions').value !== '' && localStorage.getItem('premium') !== 'true') {
+    } else if (document.getElementById('exclusions').value && document.getElementById('exclusions').value !== '' && localStorage.getItem('premium1') !== 'true') {
         exclusionsInput.value = '';
         generateImage();
     } else {
@@ -2654,9 +2654,9 @@ function removePremium() {
         prompt('Введите "Убрать"(2/4)') === 'Убрать' && 
         prompt('Введите "ПОДТВЕРЖДАЮ"(3/4)') === 'ПОДТВЕРЖДАЮ' && 
         confirm('Вы уверены, что хотите убрать премиум?\nЭто действие потом нельзя будет отменить\nДля повторного получения вам придется заново оплачивать!(4/4)')) {
-        localStorage.removeItem('premium');
-        localStorage.setItem('premium', 'false');
-        localStorage.removeItem('premiumCongratsShown');
+        localStorage.removeItem('premium1');
+        localStorage.setItem('premium1', 'false');
+        localStorage.removeItem('premiumCongratsShown1');
         alert('Премиум успешно убран!');
         checkPremium();
         const waitForGonned = setInterval(() => {
@@ -2688,14 +2688,14 @@ window.onload = async () => {
             checkAttempts();
             mainContainer.style.display = 'flex';
         }
-        if (contactData.messenger && JSON.parse(localStorage.getItem('contactData'))) {
+        if (contactData.messenger && JSON.parse(localStorage.getItem('contactData1'))) {
             rememberMe.checked = true;
         }
     }
 };
 
 function checkBadWords() {
-    if (localStorage.getItem('premium') === 'true') {
+    if (localStorage.getItem('premium1') === 'true') {
         document.getElementById('telegram').disabled = false;
         document.getElementById('whatsapp').disabled = false;
         document.getElementById('p1').style.display = 'none';
@@ -2732,7 +2732,7 @@ function checkBadWords() {
     }
 }
 
-let usedDescriptions = JSON.parse(localStorage.getItem('usedDescriptions')) || [];
+let usedDescriptions = JSON.parse(localStorage.getItem('usedDescriptions1')) || [];
 
 const descriptions = [
     { desc: 'Красивый закат над океаном с пальмами на переднем плане', category: 'nature' },
@@ -2768,7 +2768,7 @@ function getAvailableOptions(selectId, isPremium) {
 }
 
 function surpriseMode() {
-    const isPremium = localStorage.getItem('premium') === 'true';
+    const isPremium = localStorage.getItem('premium1') === 'true';
     let availableDescs = descriptions.filter(d => !usedDescriptions.includes(d.desc));
     if (availableDescs.length === 0) {
         usedDescriptions = [];
@@ -2778,7 +2778,7 @@ function surpriseMode() {
     const randomDesc = randomDescObj.desc;
     const category = randomDescObj.category;
     usedDescriptions.push(randomDesc);
-    localStorage.setItem('usedDescriptions', JSON.stringify(usedDescriptions));
+    localStorage.setItem('usedDescriptions1', JSON.stringify(usedDescriptions));
     descriptionInput.value = randomDesc;
     updateDescriptionLimit();
     textInput.value = '';
@@ -2866,5 +2866,4 @@ checkAdmin();
 checkPremium();
     </script>
 </body>
-
 </html>
